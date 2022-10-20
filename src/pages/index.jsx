@@ -2,7 +2,13 @@ import Container from "@/ui/container";
 import dbPromise, { jsonify } from "@/modules/db";
 
 export default function HomePage({ users = [] }) {
-  return <Container className="mt-16 text-white text-2xl"></Container>;
+  return (
+    <Container className="mt-16 text-white text-2xl">
+      {users.map((user) => (
+        <div>{user.name}</div>
+      ))}
+    </Container>
+  );
 }
 
 export async function getServerSideProps({ ctx }) {
