@@ -1,22 +1,15 @@
+import { getUsers } from "@/api/users";
+import { jsonify } from "@/modules/db";
 import Container from "@/ui/container";
-import dbPromise, { jsonify } from "@/modules/db";
 
 export default function HomePage({ users = [] }) {
   return (
-    <Container className="mt-16 text-white text-2xl">
-      {users.map((user) => (
-        <div>{user.name}</div>
-      ))}
-    </Container>
+    <Container className="mt-16 text-white text-2xl flex flex-col gap-8"></Container>
   );
 }
 
 export async function getServerSideProps({ ctx }) {
-  const users = await (await dbPromise)
-    .db()
-    .collection("users")
-    .find({})
-    .toArray();
+  const users = await getUsers();
 
   return {
     props: {
