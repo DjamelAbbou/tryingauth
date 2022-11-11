@@ -2,10 +2,19 @@
 // import { jsonify } from "@/modules/db";
 
 import Container from '@/ui/container'
+import { useRouter } from 'next/router'
 
 export default function HomePage({ users = [] }) {
+  const router = useRouter()
   return (
-    <Container className='mt-16 text-white text-2xl flex flex-col gap-8'>Hello world</Container>
+    <Container className='mt-16 text-white text-2xl flex flex-col gap-8'>
+      <div
+        className='cursor-pointer border-white'
+        onClick={() => router.push('/auth/Signup')}
+      >
+        sign up
+      </div>
+    </Container>
   )
 }
 

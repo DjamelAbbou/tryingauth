@@ -1,8 +1,8 @@
 import dbPromise from "@/modules/db";
 
 export default async function handler(req, res) {
-  const { username, password } = req;
-  console.log(req.body);
+  const { username, password } = JSON.parse(req.body);
+  console.log(username, password)
 
   if (req.method === "POST") {
     const user = await (await dbPromise)
